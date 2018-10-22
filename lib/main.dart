@@ -14,9 +14,15 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   String _value = "Hello";
 
-  void _onPressed(String value) {
+  void _onPressedRaised(String value) {
     setState(() {
       _value = value;
+    });
+  }
+
+  void _onPressedFlat() {
+    setState(() {
+      _value = new DateTime.now().toString();
     });
   }
 
@@ -33,8 +39,12 @@ class _MyAppState extends State<MyApp> {
             children: <Widget>[
               new Text(_value),
               new RaisedButton(
-                onPressed: () => _onPressed("Updated value!"),
-                child: new Text("Update"),
+                onPressed: () => _onPressedRaised("Updated value!"),
+                child: new Text("Raised button"),
+              ),
+              new FlatButton(
+                onPressed: _onPressedFlat,
+                child: new Text("Flat button"),
               ),
             ],
           ),
