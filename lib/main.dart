@@ -13,6 +13,7 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   String _value = "Hello";
+  int _intValue = 0;
 
   void _onPressedRaised(String value) {
     setState(() {
@@ -23,6 +24,18 @@ class _MyAppState extends State<MyApp> {
   void _onPressedFlat() {
     setState(() {
       _value = new DateTime.now().toString();
+    });
+  }
+
+  void _add() {
+    setState(() {
+      _intValue++;
+    });
+  }
+
+  void _subtract() {
+    setState(() {
+      _intValue--;
     });
   }
 
@@ -46,6 +59,10 @@ class _MyAppState extends State<MyApp> {
                 onPressed: _onPressedFlat,
                 child: new Text("Flat button"),
               ),
+              new Text("Value = $_intValue"),
+              new IconButton(icon: new Icon(Icons.add), onPressed: _add),
+              new IconButton(
+                  icon: new Icon(Icons.remove), onPressed: _subtract),
             ],
           ),
         ),
