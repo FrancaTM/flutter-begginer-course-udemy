@@ -15,6 +15,8 @@ class _MyAppState extends State<MyApp> {
   String _value = "Hello";
   int _intValue = 0;
   String _valueTextField = "Text field input";
+  bool _value1 = false;
+  bool _value2 = false;
 
   void _onPressedRaised(String value) {
     setState(() {
@@ -50,6 +52,18 @@ class _MyAppState extends State<MyApp> {
     });
   }
 
+  void _value1Changed(bool value) {
+    setState(() {
+      _value1 = value;
+    });
+  }
+
+  void _value2Changed(bool value) {
+    setState(() {
+      _value2 = value;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -82,10 +96,23 @@ class _MyAppState extends State<MyApp> {
                   icon: new Icon(Icons.people),
                 ),
                 autocorrect: true,
-                autofocus: true,
+                autofocus: false,
                 keyboardType: TextInputType.text,
                 onChanged: _onChanged,
                 onSubmitted: _onSubmitted,
+              ),
+              new Checkbox(
+                value: _value1,
+                onChanged: _value1Changed,
+              ),
+              new CheckboxListTile(
+                value: _value2,
+                onChanged: _value2Changed,
+                title: new Text("Hello"),
+                controlAffinity: ListTileControlAffinity.leading,
+                subtitle: new Text("Subtitle"),
+                secondary: new Icon(Icons.archive),
+                activeColor: Colors.red,
               ),
             ],
           ),
