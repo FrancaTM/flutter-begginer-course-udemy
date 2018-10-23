@@ -14,6 +14,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   String _value = "Hello";
   int _intValue = 0;
+  String _valueTextField = "Text field input";
 
   void _onPressedRaised(String value) {
     setState(() {
@@ -36,6 +37,16 @@ class _MyAppState extends State<MyApp> {
   void _subtract() {
     setState(() {
       _intValue--;
+    });
+  }
+
+  void _onChanged(String value) {
+    setState(() => _valueTextField = "Changed: $value");
+  }
+
+  void _onSubmitted(String value) {
+    setState(() {
+      _valueTextField = "Submitted: $value";
     });
   }
 
@@ -63,6 +74,19 @@ class _MyAppState extends State<MyApp> {
               new IconButton(icon: new Icon(Icons.add), onPressed: _add),
               new IconButton(
                   icon: new Icon(Icons.remove), onPressed: _subtract),
+              new Text(_valueTextField),
+              new TextField(
+                decoration: new InputDecoration(
+                  labelText: "Hello",
+                  hintText: "Hint text",
+                  icon: new Icon(Icons.people),
+                ),
+                autocorrect: true,
+                autofocus: true,
+                keyboardType: TextInputType.text,
+                onChanged: _onChanged,
+                onSubmitted: _onSubmitted,
+              ),
             ],
           ),
         ),
