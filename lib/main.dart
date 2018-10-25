@@ -19,6 +19,8 @@ class _MyAppState extends State<MyApp> {
   bool _value2 = false;
   int _value1Radio = 0;
   int _value2Radio = 0;
+  bool _value1Switch = false;
+  bool _value2Switch = false;
 
   void _onPressedRaised(String value) {
     setState(() {
@@ -109,6 +111,18 @@ class _MyAppState extends State<MyApp> {
     return column;
   }
 
+  void _onChanged1(bool value) {
+    setState(() {
+      _value1Switch = value;
+    });
+  }
+
+  void _onChanged2(bool value) {
+    setState(() {
+      _value2Switch = value;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -162,6 +176,18 @@ class _MyAppState extends State<MyApp> {
                 ),
                 makeRadios(),
                 makeRadioTiles(),
+                new Switch(value: _value1Switch, onChanged: _onChanged1),
+                new SwitchListTile(
+                  value: _value2Switch,
+                  onChanged: _onChanged2,
+                  title: new Text(
+                    "Switch",
+                    style: new TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.red,
+                    ),
+                  ),
+                ),
               ],
             ),
           ),
