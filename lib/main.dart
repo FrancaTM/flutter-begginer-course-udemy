@@ -21,6 +21,7 @@ class _MyAppState extends State<MyApp> {
   int _value2Radio = 0;
   bool _value1Switch = false;
   bool _value2Switch = false;
+  double _valueSlider = 0.0;
 
   void _onPressedRaised(String value) {
     setState(() {
@@ -123,6 +124,12 @@ class _MyAppState extends State<MyApp> {
     });
   }
 
+  void _setValueSlider(double value) {
+    setState(() {
+      _valueSlider = value;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -188,6 +195,8 @@ class _MyAppState extends State<MyApp> {
                     ),
                   ),
                 ),
+                new Text("Value: ${(_valueSlider * 100).round()}"),
+                new Slider(value: _valueSlider, onChanged: _setValueSlider),
               ],
             ),
           ),
