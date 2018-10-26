@@ -24,6 +24,8 @@ class _MyAppState extends State<MyApp> {
   bool _value2Switch = false;
   double _valueSlider = 0.0;
   String _valueDatePicker = "";
+  String _valueSection3Assignment = "";
+  String _display = "";
 
   void _onPressedRaised(String value) {
     setState(() {
@@ -147,6 +149,18 @@ class _MyAppState extends State<MyApp> {
     }
   }
 
+  void _onChangedSection3Assignment(String value) {
+    setState(() {
+      _valueSection3Assignment = value;
+    });
+  }
+
+  void _onPressedSection3Assignment() {
+    setState(() {
+      _display = _valueSection3Assignment;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -218,6 +232,12 @@ class _MyAppState extends State<MyApp> {
                 new RaisedButton(
                   onPressed: _selectDate,
                   child: new Text("Select date"),
+                ),
+                new Text(_display),
+                new TextField(onChanged: _onChangedSection3Assignment),
+                new RaisedButton(
+                  onPressed: _onPressedSection3Assignment,
+                  child: new Text("Enter"),
                 ),
               ],
             ),
