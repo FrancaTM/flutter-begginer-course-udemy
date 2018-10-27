@@ -26,6 +26,7 @@ class _MyAppState extends State<MyApp> {
   String _valueDatePicker = "";
   String _valueSection3Assignment = "";
   String _display = "";
+  String _valueFAB = "FAB date here!";
 
   void _onPressedRaised(String value) {
     setState(() {
@@ -161,6 +162,12 @@ class _MyAppState extends State<MyApp> {
     });
   }
 
+  void _onPressedFAB() {
+    setState(() {
+      _valueFAB = new DateTime.now().toString();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -252,10 +259,17 @@ class _MyAppState extends State<MyApp> {
                   onPressed: _onPressedSection3Assignment,
                   child: new Text("Enter"),
                 ),
+                new Text(_valueFAB),
               ],
             ),
           ),
         ),
+      ),
+      floatingActionButton: new FloatingActionButton(
+        onPressed: _onPressedFAB,
+        backgroundColor: Colors.purple,
+        mini: false,
+        child: new Icon(Icons.timer),
       ),
     );
   }
