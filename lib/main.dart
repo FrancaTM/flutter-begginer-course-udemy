@@ -165,7 +165,14 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: new AppBar(
-        title: new Text("App Title"),
+        title: new Text(
+          "App Title ($_intValue)",
+        ),
+        backgroundColor: Colors.red,
+        actions: <Widget>[
+          new IconButton(icon: new Icon(Icons.add), onPressed: _add),
+          new IconButton(icon: new Icon(Icons.remove), onPressed: _subtract),
+        ],
       ),
       body: new SingleChildScrollView(
         child: new Container(
@@ -182,7 +189,13 @@ class _MyAppState extends State<MyApp> {
                   onPressed: _onPressedFlat,
                   child: new Text("Flat button"),
                 ),
-                new Text("Value = $_intValue"),
+                new Text(
+                  "Value = $_intValue",
+                  style: new TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 37.0,
+                  ),
+                ),
                 new IconButton(icon: new Icon(Icons.add), onPressed: _add),
                 new IconButton(
                     icon: new Icon(Icons.remove), onPressed: _subtract),
