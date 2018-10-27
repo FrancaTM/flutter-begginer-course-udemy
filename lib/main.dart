@@ -181,6 +181,20 @@ class _MyAppState extends State<MyApp> {
           new IconButton(icon: new Icon(Icons.remove), onPressed: _subtract),
         ],
       ),
+      drawer: new Drawer(
+        child: new Container(
+          padding: new EdgeInsets.all(32.0),
+          child: new Column(
+            children: <Widget>[
+              new Text("Drawer"),
+              new RaisedButton(
+                onPressed: () => Navigator.pop(context),
+                child: new Text("Close"),
+              ),
+            ],
+          ),
+        ),
+      ),
       body: new SingleChildScrollView(
         child: new Container(
           padding: new EdgeInsets.all(32.0),
