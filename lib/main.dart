@@ -13,6 +13,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  /// Variables
   String _value = "Hello";
   int _intValue = 0;
   String _valueTextField = "Text field input";
@@ -28,6 +29,9 @@ class _MyAppState extends State<MyApp> {
   String _display = "";
   String _valueFAB = "FAB date here!";
   String _valueFooter = "Footer buttons value here!";
+  List<BottomNavigationBarItem> _bnbItems;
+  String valueBnb = "Bottom navigation bar value here!";
+  int _index = 0;
 
   void _onPressedRaised(String value) {
     setState(() {
@@ -176,6 +180,17 @@ class _MyAppState extends State<MyApp> {
   }
 
   @override
+  void initState() {
+    _bnbItems = new List();
+    _bnbItems.add(new BottomNavigationBarItem(
+        icon: new Icon(Icons.people), title: new Text("People")));
+    _bnbItems.add(new BottomNavigationBarItem(
+        icon: new Icon(Icons.weekend), title: new Text("Weekend")));
+    _bnbItems.add(new BottomNavigationBarItem(
+        icon: new Icon(Icons.message), title: new Text("Message")));
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: new AppBar(
@@ -282,16 +297,34 @@ class _MyAppState extends State<MyApp> {
                 ),
                 new Text(_valueFAB),
                 new Text(_valueFooter),
+                new Text(valueBnb),
               ],
             ),
           ),
         ),
       ),
       persistentFooterButtons: <Widget>[
-        new IconButton(icon: new Icon(Icons.timer), onPressed: () => _onPressedFooter1("Footer button 1")),
-        new IconButton(icon: new Icon(Icons.people), onPressed: () => _onPressedFooter1("Footer button 2")),
-        new IconButton(icon: new Icon(Icons.map), onPressed: () => _onPressedFooter1("Footer button 3")),
+        new IconButton(
+            icon: new Icon(Icons.timer),
+            onPressed: () => _onPressedFooter1("Footer button 1")),
+        new IconButton(
+            icon: new Icon(Icons.people),
+            onPressed: () => _onPressedFooter1("Footer button 2")),
+        new IconButton(
+            icon: new Icon(Icons.map),
+            onPressed: () => _onPressedFooter1("Footer button 3")),
       ],
+      bottomNavigationBar: new BottomNavigationBar(
+        items: _bnbItems,
+        fixedColor: Colors.blue,
+        currentIndex: _index,
+        onTap: (int item) {
+          setState(() {
+            _index = item;
+            valueBnb = "Current value is: ${_index.toString()}";
+          });
+        },
+      ),
       floatingActionButton: new FloatingActionButton(
         onPressed: _onPressedFAB,
         backgroundColor: Colors.purple,
