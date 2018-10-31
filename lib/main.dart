@@ -25,13 +25,14 @@ class _MyAppState extends State<MyApp> {
   bool _value2Switch = false;
   double _valueSlider = 0.0;
   String _valueDatePicker = "";
-  String _valueSection3Assignment = "";
+  String _valueSection3Assignment = "Section 3 assignment value here!";
   String _display = "";
   String _valueFAB = "FAB date here!";
   String _valueFooter = "Footer buttons value here!";
   List<BottomNavigationBarItem> _bnbItems;
-  String valueBnb = "Bottom navigation bar value here!";
+  String _valueBnb = "Bottom navigation bar value here!";
   int _index = 0;
+  String _valueSection4Assignment = "Section 4 assignment value here!";
 
   void _onPressedRaised(String value) {
     setState(() {
@@ -179,6 +180,13 @@ class _MyAppState extends State<MyApp> {
     });
   }
 
+  void _onPressedSection4Assignment() {
+    setState(() {
+      _valueSection4Assignment = new DateTime.now().toString();
+    });
+    Navigator.pop(context);
+  }
+
   @override
   void initState() {
     _bnbItems = new List();
@@ -211,6 +219,11 @@ class _MyAppState extends State<MyApp> {
               new Text("Drawer"),
               new RaisedButton(
                 onPressed: () => Navigator.pop(context),
+                child: new Text("Close"),
+              ),
+              new Text("Section 4 assignment"),
+              new RaisedButton(
+                onPressed: _onPressedSection4Assignment,
                 child: new Text("Close"),
               ),
             ],
@@ -297,7 +310,8 @@ class _MyAppState extends State<MyApp> {
                 ),
                 new Text(_valueFAB),
                 new Text(_valueFooter),
-                new Text(valueBnb),
+                new Text(_valueBnb),
+                new Text(_valueSection4Assignment),
               ],
             ),
           ),
@@ -321,7 +335,7 @@ class _MyAppState extends State<MyApp> {
         onTap: (int item) {
           setState(() {
             _index = item;
-            valueBnb = "Current value is: ${_index.toString()}";
+            _valueBnb = "Current value is: ${_index.toString()}";
           });
         },
       ),
