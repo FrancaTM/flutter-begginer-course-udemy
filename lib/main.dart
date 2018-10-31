@@ -27,6 +27,7 @@ class _MyAppState extends State<MyApp> {
   String _valueSection3Assignment = "";
   String _display = "";
   String _valueFAB = "FAB date here!";
+  String _valueFooter = "Footer buttons value here!";
 
   void _onPressedRaised(String value) {
     setState(() {
@@ -168,6 +169,12 @@ class _MyAppState extends State<MyApp> {
     });
   }
 
+  void _onPressedFooter1(String value) {
+    setState(() {
+      _valueFooter = value;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -274,11 +281,17 @@ class _MyAppState extends State<MyApp> {
                   child: new Text("Enter"),
                 ),
                 new Text(_valueFAB),
+                new Text(_valueFooter),
               ],
             ),
           ),
         ),
       ),
+      persistentFooterButtons: <Widget>[
+        new IconButton(icon: new Icon(Icons.timer), onPressed: () => _onPressedFooter1("Footer button 1")),
+        new IconButton(icon: new Icon(Icons.people), onPressed: () => _onPressedFooter1("Footer button 2")),
+        new IconButton(icon: new Icon(Icons.map), onPressed: () => _onPressedFooter1("Footer button 3")),
+      ],
       floatingActionButton: new FloatingActionButton(
         onPressed: _onPressedFAB,
         backgroundColor: Colors.purple,
