@@ -38,6 +38,7 @@ class _MyAppState extends State<MyApp> {
   final GlobalKey<ScaffoldState> _scaffoldState =
       new GlobalKey<ScaffoldState>();
   String _simpleDialogValue = "Simple dialog executed?";
+  String _valueSection5Assignment = "Section 5 assignment value here!";
 
   void _onPressedRaised(String value) {
     setState(() {
@@ -282,6 +283,21 @@ class _MyAppState extends State<MyApp> {
     }
   }
 
+  /// Section 5 assignment
+  void _onChangedSection5Assignment(String value) {
+    setState(() {
+      _valueSection5Assignment = value;
+    });
+  }
+
+  void _showSnackBarSection5Assignment(String message) {
+    _scaffoldState.currentState.showSnackBar(
+      new SnackBar(
+        content: new Text(message),
+      ),
+    );
+  }
+
   @override
   void initState() {
     _bnbItems = new List();
@@ -427,6 +443,14 @@ class _MyAppState extends State<MyApp> {
                   child: new Text(
                     "Simple dialog",
                   ),
+                ),
+                new Text("Enter your name:"),
+                new TextField(
+                  onChanged: _onChangedSection5Assignment,
+                ),
+                new RaisedButton(
+                  onPressed: () => _showSnackBarSection5Assignment("Hello $_valueSection5Assignment"),
+                  child: new Text("Enter"),
                 ),
               ],
             ),
