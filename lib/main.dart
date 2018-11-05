@@ -12,6 +12,8 @@ class MyApp extends StatefulWidget {
   _MyAppState createState() => _MyAppState();
 }
 
+enum Answers { YES, NO, MAYBE }
+
 class _MyAppState extends State<MyApp> {
   /// Variables
   String _value = "Hello";
@@ -35,6 +37,7 @@ class _MyAppState extends State<MyApp> {
   String _valueSection4Assignment = "Section 4 assignment value here!";
   final GlobalKey<ScaffoldState> _scaffoldState =
       new GlobalKey<ScaffoldState>();
+  String _simpleDialogValue = "Simple dialog executed?";
 
   void _onPressedRaised(String value) {
     setState(() {
@@ -237,6 +240,48 @@ class _MyAppState extends State<MyApp> {
     );
   }
 
+  void _setSimpleDialogValue(String value) =>
+      setState(() => _simpleDialogValue = value);
+
+  Future _askUser() async {
+    switch (await showDialog(
+      context: context,
+      child: new SimpleDialog(
+        title: new Text("Simple Alert"),
+        children: <Widget>[
+          new SimpleDialogOption(
+            child: new Text("Yes"),
+            onPressed: () {
+              Navigator.pop(context, Answers.YES);
+            },
+          ),
+          new SimpleDialogOption(
+            child: new Text("No"),
+            onPressed: () {
+              Navigator.pop(context, Answers.NO);
+            },
+          ),
+          new SimpleDialogOption(
+            child: new Text("Maybe"),
+            onPressed: () {
+              Navigator.pop(context, Answers.MAYBE);
+            },
+          ),
+        ],
+      ),
+    )) {
+      case Answers.YES:
+        _setSimpleDialogValue("Yes");
+        break;
+      case Answers.NO:
+        _setSimpleDialogValue("No");
+        break;
+      case Answers.MAYBE:
+        _setSimpleDialogValue("Maybe");
+        break;
+    }
+  }
+
   @override
   void initState() {
     _bnbItems = new List();
@@ -375,6 +420,13 @@ class _MyAppState extends State<MyApp> {
                   onPressed: () =>
                       _showAlertDialog(context, "Simple alert dialog!"),
                   child: new Text("Button"),
+                ),
+                new Text(_simpleDialogValue),
+                new RaisedButton(
+                  onPressed: _askUser,
+                  child: new Text(
+                    "Simple dialog",
+                  ),
                 ),
               ],
             ),
