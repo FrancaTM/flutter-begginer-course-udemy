@@ -33,6 +33,8 @@ class _MyAppState extends State<MyApp> {
   String _valueBnb = "Bottom navigation bar value here!";
   int _index = 0;
   String _valueSection4Assignment = "Section 4 assignment value here!";
+  final GlobalKey<ScaffoldState> _scaffoldState =
+      new GlobalKey<ScaffoldState>();
 
   void _onPressedRaised(String value) {
     setState(() {
@@ -212,6 +214,14 @@ class _MyAppState extends State<MyApp> {
     );
   }
 
+  void _showSnackBar() {
+    _scaffoldState.currentState.showSnackBar(
+      new SnackBar(
+        content: new Text("Snack bar here!"),
+      ),
+    );
+  }
+
   @override
   void initState() {
     _bnbItems = new List();
@@ -226,6 +236,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldState,
       appBar: new AppBar(
         title: new Text(
           "App Title ($_intValue)",
@@ -340,6 +351,10 @@ class _MyAppState extends State<MyApp> {
                 new RaisedButton(
                   onPressed: _showBottomSheet,
                   child: new Text("Show bottom sheet"),
+                ),
+                new RaisedButton(
+                  onPressed: _showSnackBar,
+                  child: new Text("Show snack bar"),
                 ),
               ],
             ),
