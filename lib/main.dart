@@ -222,6 +222,21 @@ class _MyAppState extends State<MyApp> {
     );
   }
 
+  Future _showAlertDialog(BuildContext context, String message) async {
+    return showDialog(
+      context: context,
+      child: new AlertDialog(
+        title: new Text(message),
+        actions: <Widget>[
+          new FlatButton(
+            onPressed: () => Navigator.pop(context),
+            child: new Text("OK"),
+          ),
+        ],
+      ),
+    );
+  }
+
   @override
   void initState() {
     _bnbItems = new List();
@@ -355,6 +370,11 @@ class _MyAppState extends State<MyApp> {
                 new RaisedButton(
                   onPressed: _showSnackBar,
                   child: new Text("Show snack bar"),
+                ),
+                new RaisedButton(
+                  onPressed: () =>
+                      _showAlertDialog(context, "Simple alert dialog!"),
+                  child: new Text("Button"),
                 ),
               ],
             ),
