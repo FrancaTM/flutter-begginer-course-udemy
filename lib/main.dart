@@ -187,6 +187,31 @@ class _MyAppState extends State<MyApp> {
     Navigator.pop(context);
   }
 
+  void _showBottomSheet() {
+    showModalBottomSheet<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return new Container(
+          padding: new EdgeInsets.all(15.0),
+          child: new Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              new Text(
+                "Bottom sheet info here!",
+                style: new TextStyle(
+                    color: Colors.red, fontWeight: FontWeight.bold),
+              ),
+              new RaisedButton(
+                onPressed: () => Navigator.pop(context),
+                child: new Text("Close sheet"),
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
   @override
   void initState() {
     _bnbItems = new List();
@@ -312,6 +337,10 @@ class _MyAppState extends State<MyApp> {
                 new Text(_valueFooter),
                 new Text(_valueBnb),
                 new Text(_valueSection4Assignment),
+                new RaisedButton(
+                  onPressed: _showBottomSheet,
+                  child: new Text("Show bottom sheet"),
+                ),
               ],
             ),
           ),
