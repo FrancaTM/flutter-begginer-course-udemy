@@ -484,6 +484,39 @@ class _MyAppState extends State<MyApp> {
                     child: new Text("Button"),
                   ),
                 ),
+                new Card(
+                  child: new Container(
+                    padding: new EdgeInsets.all(32.0),
+                    child: new Column(
+                      children: <Widget>[
+                        new Text("Card text"),
+                        new Text("Another card text"),
+                      ],
+                    ),
+                  ),
+                ),
+                new Card(
+                  child: new Container(
+                    padding: new EdgeInsets.all(32.0),
+                    child: new Column(
+                      children: <Widget>[
+                        new Text("Card text"),
+                        new Text("Another card text"),
+                      ],
+                    ),
+                  ),
+                ),
+                new Card(
+                  child: new Container(
+                    padding: new EdgeInsets.all(32.0),
+                    child: new Column(
+                      children: <Widget>[
+                        new Text("Card text"),
+                        new Text("Another card text"),
+                      ],
+                    ),
+                  ),
+                ),
               ],
             ),
           ),
