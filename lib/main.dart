@@ -39,6 +39,8 @@ class _MyAppState extends State<MyApp> {
       new GlobalKey<ScaffoldState>();
   String _simpleDialogValue = "Simple dialog executed?";
   String _valueSection5Assignment = "Section 5 assignment value here!";
+  TextEditingController _user = new TextEditingController();
+  TextEditingController _password = new TextEditingController();
 
   void _onPressedRaised(String value) {
     setState(() {
@@ -449,8 +451,38 @@ class _MyAppState extends State<MyApp> {
                   onChanged: _onChangedSection5Assignment,
                 ),
                 new RaisedButton(
-                  onPressed: () => _showSnackBarSection5Assignment("Hello $_valueSection5Assignment"),
+                  onPressed: () => _showSnackBarSection5Assignment(
+                      "Hello $_valueSection5Assignment"),
                   child: new Text("Enter"),
+                ),
+                new Text("Please login"),
+                new Row(
+                  children: <Widget>[
+                    new Text("Username: "),
+                    new Expanded(
+                      child: new TextField(
+                        controller: _user,
+                      ),
+                    ),
+                  ],
+                ),
+                new Row(
+                  children: <Widget>[
+                    new Text("Password: "),
+                    new Expanded(
+                      child: new TextField(
+                        controller: _password,
+                        obscureText: true,
+                      ),
+                    ),
+                  ],
+                ),
+                new Padding(
+                  padding: new EdgeInsets.all(32.0),
+                  child: new RaisedButton(
+                    onPressed: () => debugPrint("Login ${_user.text}"),
+                    child: new Text("Button"),
+                  ),
                 ),
               ],
             ),
