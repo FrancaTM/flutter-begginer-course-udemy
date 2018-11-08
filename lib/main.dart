@@ -517,6 +517,13 @@ class _MyAppState extends State<MyApp> {
                     ),
                   ),
                 ),
+                new Text("Image demo"),
+                new Container(
+                  color: Colors.blueGrey,
+                  child: new Image.asset("images/flutter_logo.png"),
+                ),
+                new Image.network(
+                    "http://voidrealms.com/images/smile.jpg"),
               ],
             ),
           ),
