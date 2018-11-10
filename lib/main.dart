@@ -45,6 +45,7 @@ class _MyAppState extends State<MyApp> {
   TextEditingController _user = new TextEditingController();
   TextEditingController _password = new TextEditingController();
   Map _countries = new Map();
+  List _pets = ["dogs", "cats", "fish", "birds", "lizards"];
 
   void _onPressedRaised(String value) {
     setState(() {
@@ -549,6 +550,7 @@ class _MyAppState extends State<MyApp> {
                   style: new TextStyle(fontWeight: FontWeight.bold),
                 ),
                 new Expanded(
+                  flex: 2,
                   child: new ListView.builder(
                     itemCount: _countries.length,
                     itemBuilder: (BuildContext context, int index) {
@@ -561,6 +563,18 @@ class _MyAppState extends State<MyApp> {
                           ),
                         ],
                       );
+                    },
+                  ),
+                ),
+                new Text(
+                  "Available Pets",
+                  style: new TextStyle(fontWeight: FontWeight.bold),
+                ),
+                new Expanded(
+                  child: new ListView.builder(
+                    itemCount: _pets.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return new Text(_pets.elementAt(index));
                     },
                   ),
                 ),
