@@ -46,6 +46,7 @@ class _MyAppState extends State<MyApp> {
   TextEditingController _password = new TextEditingController();
   Map _countries = new Map();
   List _pets = ["dogs", "cats", "fish", "birds", "lizards"];
+  String _valueTooltip = "Nothing yet";
 
   void _onPressedRaised(String value) {
     setState(() {
@@ -317,6 +318,12 @@ class _MyAppState extends State<MyApp> {
     }
   }
 
+  void _onPressedTooltip() {
+    setState(() {
+      _valueTooltip = new DateTime.now().toString();
+    });
+  }
+
   @override
   void initState() {
     _getData();
@@ -577,6 +584,12 @@ class _MyAppState extends State<MyApp> {
                       return new Text(_pets.elementAt(index));
                     },
                   ),
+                ),
+                new Text(_valueTooltip),
+                new IconButton(
+                  icon: new Icon(Icons.timer),
+                  onPressed: _onPressedTooltip,
+                  tooltip: "Test",
                 ),
               ],
             ),
