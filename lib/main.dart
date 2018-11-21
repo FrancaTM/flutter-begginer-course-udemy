@@ -49,6 +49,7 @@ class _MyAppState extends State<MyApp> {
   String _valueTooltip = "Nothing yet";
   int _counter = 0;
   List<Widget> _list = new List<Widget>();
+  double _valueSliderIndicator = 0.0;
 
   void _onPressedRaised(String value) {
     setState(() {
@@ -365,6 +366,9 @@ class _MyAppState extends State<MyApp> {
     }
   }
 
+  void _onChangedSlideIndicator(double value) =>
+      setState(() => _valueSliderIndicator = value);
+
   @override
   void initState() {
     _getData();
@@ -424,221 +428,235 @@ class _MyAppState extends State<MyApp> {
           padding: new EdgeInsets.all(32.0),
           child: new Center(
             child: new Column(
-              children: _list,
-//              children: <Widget>[
-////                new Text(_value),
-////                new RaisedButton(
-////                  onPressed: () => _onPressedRaised("Updated value!"),
-////                  child: new Text("Raised button"),
-////                ),
-////                new FlatButton(
-////                  onPressed: _onPressedFlat,
-////                  child: new Text("Flat button"),
-////                ),
-////                new Text(
-////                  "Value = $_intValue",
-////                  style: new TextStyle(
-////                    fontWeight: FontWeight.bold,
-////                    fontSize: 37.0,
-////                  ),
-////                ),
-////                new IconButton(icon: new Icon(Icons.add), onPressed: _add),
-////                new IconButton(
-////                    icon: new Icon(Icons.remove), onPressed: _subtract),
-////                new Text(_valueTextField),
-////                new TextField(
-////                  decoration: new InputDecoration(
-////                    labelText: "Hello",
-////                    hintText: "Hint text",
-////                    icon: new Icon(Icons.people),
-////                  ),
-////                  autocorrect: true,
-////                  autofocus: false,
-////                  keyboardType: TextInputType.text,
-////                  onChanged: _onChanged,
-////                  onSubmitted: _onSubmitted,
-////                ),
-////                new Checkbox(
-////                  value: _value1,
-////                  onChanged: _value1Changed,
-////                ),
-////                new CheckboxListTile(
-////                  value: _value2,
-////                  onChanged: _value2Changed,
-////                  title: new Text("Hello"),
-////                  controlAffinity: ListTileControlAffinity.leading,
-////                  subtitle: new Text("Subtitle"),
-////                  secondary: new Icon(Icons.archive),
-////                  activeColor: Colors.red,
-////                ),
-////                makeRadios(),
-////                makeRadioTiles(),
-////                new Switch(value: _value1Switch, onChanged: _onChanged1),
-////                new SwitchListTile(
-////                  value: _value2Switch,
-////                  onChanged: _onChanged2,
-////                  title: new Text(
-////                    "Switch",
-////                    style: new TextStyle(
-////                      fontWeight: FontWeight.bold,
-////                      color: Colors.red,
-////                    ),
-////                  ),
-////                ),
-////                new Text("Value: ${(_valueSlider * 100).round()}"),
-////                new Slider(value: _valueSlider, onChanged: _setValueSlider),
-////                new Text(_valueDatePicker),
-////                new RaisedButton(
-////                  onPressed: _selectDate,
-////                  child: new Text("Select date"),
-////                ),
-////                new Text(_display),
-////                new TextField(onChanged: _onChangedSection3Assignment),
-////                new RaisedButton(
-////                  onPressed: _onPressedSection3Assignment,
-////                  child: new Text("Enter"),
-////                ),
-////                new Text(_valueFAB),
-////                new Text(_valueFooter),
-////                new Text(_valueBnb),
-////                new Text(_valueSection4Assignment),
-////                new RaisedButton(
-////                  onPressed: _showBottomSheet,
-////                  child: new Text("Show bottom sheet"),
-////                ),
-////                new RaisedButton(
-////                  onPressed: _showSnackBar,
-////                  child: new Text("Show snack bar"),
-////                ),
-////                new RaisedButton(
-////                  onPressed: () =>
-////                      _showAlertDialog(context, "Simple alert dialog!"),
-////                  child: new Text("Button"),
-////                ),
-////                new Text(_simpleDialogValue),
-////                new RaisedButton(
-////                  onPressed: _askUser,
-////                  child: new Text(
-////                    "Simple dialog",
-////                  ),
-////                ),
-////                new Text("Enter your name:"),
-////                new TextField(
-////                  onChanged: _onChangedSection5Assignment,
-////                ),
-////                new RaisedButton(
-////                  onPressed: () => _showSnackBarSection5Assignment(
-////                      "Hello $_valueSection5Assignment"),
-////                  child: new Text("Enter"),
-////                ),
-////                new Text("Please login"),
-////                new Row(
-////                  children: <Widget>[
-////                    new Text("Username: "),
-////                    new Expanded(
-////                      child: new TextField(
-////                        controller: _user,
-////                      ),
-////                    ),
-////                  ],
-////                ),
-////                new Row(
-////                  children: <Widget>[
-////                    new Text("Password: "),
-////                    new Expanded(
-////                      child: new TextField(
-////                        controller: _password,
-////                        obscureText: true,
-////                      ),
-////                    ),
-////                  ],
-////                ),
-////                new Padding(
-////                  padding: new EdgeInsets.all(32.0),
-////                  child: new RaisedButton(
-////                    onPressed: () => debugPrint("Login ${_user.text}"),
-////                    child: new Text("Button"),
-////                  ),
-////                ),
-////                new Card(
-////                  child: new Container(
-////                    padding: new EdgeInsets.all(32.0),
-////                    child: new Column(
-////                      children: <Widget>[
-////                        new Text("Card text"),
-////                        new Text("Another card text"),
-////                      ],
-////                    ),
-////                  ),
-////                ),
-////                new Card(
-////                  child: new Container(
-////                    padding: new EdgeInsets.all(32.0),
-////                    child: new Column(
-////                      children: <Widget>[
-////                        new Text("Card text"),
-////                        new Text("Another card text"),
-////                      ],
-////                    ),
-////                  ),
-////                ),
-////                new Card(
-////                  child: new Container(
-////                    padding: new EdgeInsets.all(32.0),
-////                    child: new Column(
-////                      children: <Widget>[
-////                        new Text("Card text"),
-////                        new Text("Another card text"),
-////                      ],
-////                    ),
-////                  ),
-////                ),
-////                new Text("Image demo"),
-////                new Container(
-////                  color: Colors.blueGrey,
-////                  child: new Image.asset("images/flutter_logo.png"),
-////                ),
-////                new Image.network("http://voidrealms.com/images/smile.jpg"),
-//                new Text(
-//                  "Countries",
-//                  style: new TextStyle(fontWeight: FontWeight.bold),
+//              children: _list,
+              children: <Widget>[
+//                new Text(_value),
+//                new RaisedButton(
+//                  onPressed: () => _onPressedRaised("Updated value!"),
+//                  child: new Text("Raised button"),
 //                ),
-//                new Expanded(
-//                  flex: 2,
-//                  child: new ListView.builder(
-//                    itemCount: _countries.length,
-//                    itemBuilder: (BuildContext context, int index) {
-//                      String key = _countries.keys.elementAt(index);
-//                      return new Row(
-//                        children: <Widget>[
-//                          new Text("$key: "),
-//                          new Expanded(
-//                            child: new Text(_countries[key]),
-//                          ),
-//                        ],
-//                      );
-//                    },
-//                  ),
+//                new FlatButton(
+//                  onPressed: _onPressedFlat,
+//                  child: new Text("Flat button"),
 //                ),
 //                new Text(
-//                  "Available Pets",
-//                  style: new TextStyle(fontWeight: FontWeight.bold),
-//                ),
-//                new Expanded(
-//                  child: new ListView.builder(
-//                    itemCount: _pets.length,
-//                    itemBuilder: (BuildContext context, int index) {
-//                      return new Text(_pets.elementAt(index));
-//                    },
+//                  "Value = $_intValue",
+//                  style: new TextStyle(
+//                    fontWeight: FontWeight.bold,
+//                    fontSize: 37.0,
 //                  ),
 //                ),
-//                new Text(_valueTooltip),
+//                new IconButton(icon: new Icon(Icons.add), onPressed: _add),
 //                new IconButton(
-//                  icon: new Icon(Icons.timer),
-//                  onPressed: _onPressedTooltip,
-//                  tooltip: "Test",
+//                    icon: new Icon(Icons.remove), onPressed: _subtract),
+//                new Text(_valueTextField),
+//                new TextField(
+//                  decoration: new InputDecoration(
+//                    labelText: "Hello",
+//                    hintText: "Hint text",
+//                    icon: new Icon(Icons.people),
+//                  ),
+//                  autocorrect: true,
+//                  autofocus: false,
+//                  keyboardType: TextInputType.text,
+//                  onChanged: _onChanged,
+//                  onSubmitted: _onSubmitted,
 //                ),
-//              ],
+//                new Checkbox(
+//                  value: _value1,
+//                  onChanged: _value1Changed,
+//                ),
+//                new CheckboxListTile(
+//                  value: _value2,
+//                  onChanged: _value2Changed,
+//                  title: new Text("Hello"),
+//                  controlAffinity: ListTileControlAffinity.leading,
+//                  subtitle: new Text("Subtitle"),
+//                  secondary: new Icon(Icons.archive),
+//                  activeColor: Colors.red,
+//                ),
+//                makeRadios(),
+//                makeRadioTiles(),
+//                new Switch(value: _value1Switch, onChanged: _onChanged1),
+//                new SwitchListTile(
+//                  value: _value2Switch,
+//                  onChanged: _onChanged2,
+//                  title: new Text(
+//                    "Switch",
+//                    style: new TextStyle(
+//                      fontWeight: FontWeight.bold,
+//                      color: Colors.red,
+//                    ),
+//                  ),
+//                ),
+//                new Text("Value: ${(_valueSlider * 100).round()}"),
+//                new Slider(value: _valueSlider, onChanged: _setValueSlider),
+//                new Text(_valueDatePicker),
+//                new RaisedButton(
+//                  onPressed: _selectDate,
+//                  child: new Text("Select date"),
+//                ),
+//                new Text(_display),
+//                new TextField(onChanged: _onChangedSection3Assignment),
+//                new RaisedButton(
+//                  onPressed: _onPressedSection3Assignment,
+//                  child: new Text("Enter"),
+//                ),
+//                new Text(_valueFAB),
+//                new Text(_valueFooter),
+//                new Text(_valueBnb),
+//                new Text(_valueSection4Assignment),
+//                new RaisedButton(
+//                  onPressed: _showBottomSheet,
+//                  child: new Text("Show bottom sheet"),
+//                ),
+//                new RaisedButton(
+//                  onPressed: _showSnackBar,
+//                  child: new Text("Show snack bar"),
+//                ),
+//                new RaisedButton(
+//                  onPressed: () =>
+//                      _showAlertDialog(context, "Simple alert dialog!"),
+//                  child: new Text("Button"),
+//                ),
+//                new Text(_simpleDialogValue),
+//                new RaisedButton(
+//                  onPressed: _askUser,
+//                  child: new Text(
+//                    "Simple dialog",
+//                  ),
+//                ),
+//                new Text("Enter your name:"),
+//                new TextField(
+//                  onChanged: _onChangedSection5Assignment,
+//                ),
+//                new RaisedButton(
+//                  onPressed: () => _showSnackBarSection5Assignment(
+//                      "Hello $_valueSection5Assignment"),
+//                  child: new Text("Enter"),
+//                ),
+//                new Text("Please login"),
+//                new Row(
+//                  children: <Widget>[
+//                    new Text("Username: "),
+//                    new Expanded(
+//                      child: new TextField(
+//                        controller: _user,
+//                      ),
+//                    ),
+//                  ],
+//                ),
+//                new Row(
+//                  children: <Widget>[
+//                    new Text("Password: "),
+//                    new Expanded(
+//                      child: new TextField(
+//                        controller: _password,
+//                        obscureText: true,
+//                      ),
+//                    ),
+//                  ],
+//                ),
+//                new Padding(
+//                  padding: new EdgeInsets.all(32.0),
+//                  child: new RaisedButton(
+//                    onPressed: () => debugPrint("Login ${_user.text}"),
+//                    child: new Text("Button"),
+//                  ),
+//                ),
+//                new Card(
+//                  child: new Container(
+//                    padding: new EdgeInsets.all(32.0),
+//                    child: new Column(
+//                      children: <Widget>[
+//                        new Text("Card text"),
+//                        new Text("Another card text"),
+//                      ],
+//                    ),
+//                  ),
+//                ),
+//                new Card(
+//                  child: new Container(
+//                    padding: new EdgeInsets.all(32.0),
+//                    child: new Column(
+//                      children: <Widget>[
+//                        new Text("Card text"),
+//                        new Text("Another card text"),
+//                      ],
+//                    ),
+//                  ),
+//                ),
+//                new Card(
+//                  child: new Container(
+//                    padding: new EdgeInsets.all(32.0),
+//                    child: new Column(
+//                      children: <Widget>[
+//                        new Text("Card text"),
+//                        new Text("Another card text"),
+//                      ],
+//                    ),
+//                  ),
+//                ),
+//                new Text("Image demo"),
+//                new Container(
+//                  color: Colors.blueGrey,
+//                  child: new Image.asset("images/flutter_logo.png"),
+//                ),
+//                new Image.network("http://voidrealms.com/images/smile.jpg"),
+                new Slider(value: _valueSliderIndicator, onChanged: _onChangedSlideIndicator),
+                new Container(
+                  padding: EdgeInsets.all(32.0),
+                  child: LinearProgressIndicator(
+                    value: _valueSliderIndicator,
+                    valueColor: AlwaysStoppedAnimation<Color>(Colors.green),
+                  ),
+                ),new Container(
+                  padding: EdgeInsets.all(32.0),
+                  child: CircularProgressIndicator(
+                    value: _valueSliderIndicator,
+                    valueColor: AlwaysStoppedAnimation<Color>(Colors.amber),
+                  ),
+                ),
+                new Text(
+                  "Countries",
+                  style: new TextStyle(fontWeight: FontWeight.bold),
+                ),
+                new Expanded(
+                  flex: 2,
+                  child: new ListView.builder(
+                    itemCount: _countries.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      String key = _countries.keys.elementAt(index);
+                      return new Row(
+                        children: <Widget>[
+                          new Text("$key: "),
+                          new Expanded(
+                            child: new Text(_countries[key]),
+                          ),
+                        ],
+                      );
+                    },
+                  ),
+                ),
+                new Text(
+                  "Available Pets",
+                  style: new TextStyle(fontWeight: FontWeight.bold),
+                ),
+                new Expanded(
+                  child: new ListView.builder(
+                    itemCount: _pets.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return new Text(_pets.elementAt(index));
+                    },
+                  ),
+                ),
+                new Text(_valueTooltip),
+                new IconButton(
+                  icon: new Icon(Icons.timer),
+                  onPressed: _onPressedTooltip,
+                  tooltip: "Test",
+                ),
+              ],
             ),
           ),
         ),
