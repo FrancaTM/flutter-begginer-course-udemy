@@ -17,6 +17,8 @@ class MyApp extends StatefulWidget {
 
 enum Answers { YES, NO, MAYBE }
 
+enum Animals { Cat, Dog, Bird, Lizard, Fish }
+
 class _MyAppState extends State<MyApp> {
   /// Variables
   String _value = "Hello";
@@ -50,6 +52,9 @@ class _MyAppState extends State<MyApp> {
   int _counter = 0;
   List<Widget> _list = new List<Widget>();
   double _valueSliderIndicator = 0.0;
+  Animals _selected = Animals.Cat;
+  String _valuePopupMenuButton = "Make a selection";
+  List<PopupMenuEntry<Animals>> _itemsPopupMenuButton = new List<PopupMenuEntry<Animals>>();
 
   void _onPressedRaised(String value) {
     setState(() {
@@ -369,8 +374,32 @@ class _MyAppState extends State<MyApp> {
   void _onChangedSlideIndicator(double value) =>
       setState(() => _valueSliderIndicator = value);
 
+  void _onSelected(Animals animal) {
+    setState(() {
+      _selected = animal;
+      _valuePopupMenuButton = "You selected ${_getDisplay(animal)}";
+    });
+  }
+
+  String _getDisplay(Animals animal) {
+    int index = animal.toString().indexOf(".");
+    index++;
+    return animal.toString().substring(index);
+  }
+
   @override
   void initState() {
+    for (Animals animal in Animals.values) {
+      _itemsPopupMenuButton.add(
+        new PopupMenuItem(
+          child: new Text(
+            _getDisplay(animal),
+          ),
+          value: animal,
+        ),
+      );
+    }
+
     _getData();
 
     _bnbItems = new List();
@@ -603,14 +632,33 @@ class _MyAppState extends State<MyApp> {
 //                  child: new Image.asset("images/flutter_logo.png"),
 //                ),
 //                new Image.network("http://voidrealms.com/images/smile.jpg"),
-                new Slider(value: _valueSliderIndicator, onChanged: _onChangedSlideIndicator),
+                new Row(
+                  children: <Widget>[
+                    new Container(
+                      padding: new EdgeInsets.all(5.0),
+                      child: new Text(_valuePopupMenuButton),
+                    ),
+                    new PopupMenuButton<Animals>(
+                      child: new Icon(Icons.input),
+                      initialValue: Animals.Cat,
+                      onSelected: _onSelected,
+                      itemBuilder: (BuildContext context) {
+                        return _itemsPopupMenuButton;
+                      },
+                    ),
+                  ],
+                ),
+                new Slider(
+                    value: _valueSliderIndicator,
+                    onChanged: _onChangedSlideIndicator),
                 new Container(
                   padding: EdgeInsets.all(32.0),
                   child: LinearProgressIndicator(
                     value: _valueSliderIndicator,
                     valueColor: AlwaysStoppedAnimation<Color>(Colors.green),
                   ),
-                ),new Container(
+                ),
+                new Container(
                   padding: EdgeInsets.all(32.0),
                   child: CircularProgressIndicator(
                     value: _valueSliderIndicator,
